@@ -51,7 +51,21 @@ export type FormPropsType = {
   activeColor?: string,
   successColor?: string,
   errorColor?: string,
+  // customStyles
+  formStyle: {},
+  inputsContainerStyle: {},
+  inputContainerStyle: {},
+  placeholderStyle: {},
+  inputStyle: {},
+  messageStyle: {},
   registerForm: (formName: string, inputs: Array<InputType>) => void,
   focusFormInput: (formName: string, inputName: string) => void,
-  blurFormInput: (formName: string, inputName: string) => void
+  blurFormInput: (formName: string, inputName: string) => void,
+  auditFormValidation: (formName: string, validations: {
+    form: boolean,
+    [inputName: string]: {
+      valid: boolean,
+      message: ?string
+    }
+  }) => void
 };

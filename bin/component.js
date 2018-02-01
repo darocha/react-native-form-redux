@@ -196,6 +196,12 @@ export default class Form extends Component<FormPropsType> {
       activeColor = '#000',
       successColor = '#00CC6A',
       errorColor = '#E74856',
+      formStyle,
+      inputsContainerStyle,
+      inputContainerStyle,
+      placeholderStyle,
+      inputStyle,
+      messageStyle,
       value,
       form,
       focusFormInput,
@@ -212,7 +218,7 @@ export default class Form extends Component<FormPropsType> {
     };
 
     return (
-      <View style={styles.formView}>
+      <View style={[styles.formView, formStyle]}>
         {(title || presentationalText) && (
           <View style={styles.headerView}>
             {title && <Text style={[styles.title, { color: titleColor }]}>{title}</Text>}
@@ -223,7 +229,7 @@ export default class Form extends Component<FormPropsType> {
             )}
           </View>
         )}
-        <View style={styles.inputsView}>
+        <View style={[styles.inputsView, inputsContainerStyle]}>
           {inputs.map((input: InputType) => {
             const inputObject = form[name] &&
               form[name].inputs.find((i: {}) => i.name === input.name);
@@ -238,21 +244,25 @@ export default class Form extends Component<FormPropsType> {
                 key={input.name}
               >
                 <View>
-                  <View style={styles.inputView}>
+                  <View style={[styles.inputView, inputContainerStyle]}>
                     <Text
-                      style={[{
-                        bottom: this.state[input.name].bottom,
-                        color: this.state[input.name].color,
-                        fontFamily: 'Open Sans',
-                        fontSize: this.state[input.name].fontSize,
-                        left: this.state[input.name].left,
-                        position: 'absolute',
-                      }, this.state[input.name].validation.message &&
-                        !this.state[input.name].validation.valid ?
-                        { color: errorColor } : {},
-                      this.state[input.name].validation.message &&
-                        this.state[input.name].validation.valid ?
-                        { color: successColor } : {}]}
+                      style={[
+                        {
+                          bottom: this.state[input.name].bottom,
+                          color: this.state[input.name].color,
+                          fontFamily: 'Open Sans',
+                          fontSize: this.state[input.name].fontSize,
+                          left: this.state[input.name].left,
+                          position: 'absolute',
+                        },
+                        placeholderStyle,
+                        this.state[input.name].validation.message &&
+                          !this.state[input.name].validation.valid ?
+                          { color: errorColor } : {},
+                        this.state[input.name].validation.message &&
+                          this.state[input.name].validation.valid ?
+                          { color: successColor } : {},
+                      ]}
                     >
                       {input.placeholder}
                     </Text>
@@ -280,6 +290,7 @@ export default class Form extends Component<FormPropsType> {
                       secureTextEntry={input.type === 'password'}
                       style={[
                         styles.textInput,
+                        inputStyle,
                         inputObject && inputObject.focus ?
                           { borderColor: activeColor } : { borderColor: inactiveColor },
                         getValue(input.name) ? { borderColor: activeColor } : {},
@@ -301,6 +312,7 @@ export default class Form extends Component<FormPropsType> {
                     <Text
                       style={[
                         styles.validationText,
+                        messageStyle,
                         {
                           color: this.state[input.name].validation.valid ?
                             successColor : errorColor,
