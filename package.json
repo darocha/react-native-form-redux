@@ -1,7 +1,7 @@
 {
   "name": "react-native-form-redux",
   "version": "0.0.1",
-  "description": "Form component highly customizable and optional redux integration",
+  "description": "Form component highly customizable with redux integration",
   "main": "./bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

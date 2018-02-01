@@ -7,10 +7,8 @@ import {
   focusFormInput,
   blurFormInput,
   auditFormValidation,
-} from './actions';
-import {
   setValue,
-} from '../../actions';
+} from './actions';
 import Form from './component';
 import { FormPropsType, StorageType, InputType } from '../../types';
 

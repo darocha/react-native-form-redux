@@ -21,3 +21,13 @@ export const auditFormValidation = (formName: string, validations: {}) => ({
   type: 'AUDIT_FORM_VALIDATION',
   payload: { formName, validations },
 });
+
+export const setValue = (name: string, value: string | number | boolean): ActionType => ({
+  type: 'SET_VALUE',
+  payload: { name, value },
+});
+
+export const clearValue = (name: string): ActionType => ({
+  type: 'CLEAR_VALUE',
+  payload: name,
+});

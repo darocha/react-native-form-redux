@@ -1,6 +1,6 @@
 // @flow
 
-import { FormReducerType, ActionType, InputType } from '../../types';
+import { FormReducerType, ActionType, InputType } from './types';
 
 export default (state: FormReducerType = {}, action: ActionType) => {
   switch (action.type) {
