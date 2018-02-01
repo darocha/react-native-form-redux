@@ -1,0 +1,32 @@
+{
+  "name": "react-native-form-redux",
+  "version": "0.0.1",
+  "description": "Form component highly customizable and optional redux integration",
+  "main": "./bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdGraVill/react-native-form-redux.git"
+  },
+  "keywords": [
+    "react-native",
+    "form",
+    "redux",
+    "redux",
+    "integration"
+  ],
+  "author": "Eduardo Grajales Villanueva @edgravill",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EdGraVill/react-native-form-redux/issues"
+  },
+  "homepage": "https://github.com/EdGraVill/react-native-form-redux#readme",
+  "peerDependencies": {
+    "react": "^16.2.0",
+    "react-native": "^0.52.2",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
+  }
+}
