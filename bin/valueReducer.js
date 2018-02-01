@@ -1,6 +1,6 @@
 // @flow
 
-import { ValueReducerType, ActionType } from '../types';
+import { ValueReducerType, ActionType } from './types';
 
 export default (state: ValueReducerType = {}, action: ActionType) => {
   switch (action.type) {

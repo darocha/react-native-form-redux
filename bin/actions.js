@@ -1,6 +1,6 @@
 // @flow
 
-import { ActionType, InputType } from '../../types';
+import { ActionType, InputType } from './types';
 
 export const registerForm = (formName: string, inputs: Array<InputType>, validations: {}): ActionType => ({
   type: 'REGISTER_FORM',

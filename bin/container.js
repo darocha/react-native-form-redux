@@ -10,7 +10,7 @@ import {
   setValue,
 } from './actions';
 import Form from './component';
-import { FormPropsType, StorageType, InputType } from '../../types';
+import { FormPropsType, StorageType, InputType } from './types';
 
 const mapStateToProps = (state: StorageType): FormPropsType => ({
   form: state.form,

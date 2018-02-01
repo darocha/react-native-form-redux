@@ -10,7 +10,7 @@ import {
   LayoutAnimation,
 } from 'react-native';
 
-import { FormPropsType, InputType } from '../../types';
+import { FormPropsType, InputType } from './types';
 import styles from './styles';
 
 const { UIManager } = NativeModules;
