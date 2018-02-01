@@ -1,6 +1,6 @@
 {
   "name": "react-native-form-redux",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "Form component highly customizable with redux integration",
   "main": "./bin/index.js",
   "scripts": {
