@@ -3,6 +3,12 @@ module.exports = {
   "parser": "babel-eslint",
   "plugins": ["flowtype"],
   "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        extensions: [".js", ".jsx"],
+      },
+    ],
     "flowtype/boolean-style": [
       2, "boolean"
     ],
@@ -15,7 +21,7 @@ module.exports = {
     ],
     "flowtype/no-primitive-constructor-types": 2,
     "flowtype/no-types-missing-file-annotation": 2,
-    "flowtype/no-weak-types": 2,
+    // "flowtype/no-weak-types": 2,
     "flowtype/object-type-delimiter": [
       2, "comma"
     ],
@@ -23,7 +29,8 @@ module.exports = {
     "flowtype/require-return-type": [
       2,
       "always", {
-        "annotateUndefined": "never"
+        "annotateUndefined": "never",
+        "excludeArrowFunctions": true
       }
     ],
     "flowtype/require-valid-file-annotation": 2,

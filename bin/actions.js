@@ -2,7 +2,13 @@
 
 import { ActionType, InputType } from './types';
 
-export const registerForm = (formName: string, inputs: Array<InputType>, validations: {}): ActionType => ({
+export const registerForm = (formName: string, inputs: Array<InputType>, validations: {
+  form: boolean,
+  [inputName: string]: {
+    valid: boolean,
+    message: ?string
+  }
+}): ActionType => ({
   type: 'REGISTER_FORM',
   payload: { formName, inputs, validations },
 });

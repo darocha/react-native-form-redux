@@ -1,6 +1,6 @@
 {
   "name": "react-native-form-redux",
-  "version": "0.1.2",
+  "version": "0.2.5",
   "description": "Form component highly customizable with redux integration",
   "main": "./bin/index.js",
   "scripts": {
@@ -37,5 +37,10 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-native": "^0.52.2",
+    "react-redux": "^5.0.6"
   }
 }

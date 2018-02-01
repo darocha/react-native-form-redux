@@ -1,7 +1,5 @@
 // @flow
 
-import { Node } from 'react';
-
 // Reducers
 
 export type ActionType = {
