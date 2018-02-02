@@ -230,9 +230,20 @@ export default class Form extends Component<FormPropsType> {
           </View>
         )}
         <View style={[styles.inputsView, inputsContainerStyle]}>
-          {inputs.map((input: InputType) => {
+          {inputs.map((input: InputType, index: number) => {
             const inputObject = form[name] &&
               form[name].inputs.find((i: {}) => i.name === input.name);
+
+            let keyboardType = 'default';
+            let returnKeyType = 'done';
+
+            if (input.type === 'number' || input.type === 'numeric') keyboardType = 'numeric';
+            if (input.type === 'email' || input.type === 'email-address') keyboardType = 'email-address';
+            if (input.type === 'phone' || input.type === 'phone-pad') keyboardType = 'phone-pad';
+            if (input.type === 'search') returnKeyType = 'search';
+            if (input.type === 'message') returnKeyType = 'send';
+            if (inputs.length > 1) returnKeyType = 'next';
+            if (inputs.length === index + 1) returnKeyType = 'go';
 
             return (
               <TouchableWithoutFeedback
@@ -268,6 +279,7 @@ export default class Form extends Component<FormPropsType> {
                     </Text>
                     <TextInput
                       autoCorrect={input.autoCorrect === undefined}
+                      keyboardType={keyboardType}
                       onBlur={() => {
                         blurFormInput(name, input.name);
                         this.blurFormInput(input.name, !!getValue(input.name), {
@@ -287,7 +299,9 @@ export default class Form extends Component<FormPropsType> {
                         }).then(() => this.handleSubmit(input.name, action));
                       }}
                       ref={(ref: Node) => { this.ref[input.name] = ref; }}
+                      returnKeyType={returnKeyType}
                       secureTextEntry={input.type === 'password'}
+                      selectionColor={inactiveColor}
                       style={[
                         styles.textInput,
                         inputStyle,
