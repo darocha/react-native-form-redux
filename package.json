@@ -1,10 +1,12 @@
 {
   "name": "react-native-form-redux",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "private": true,
   "devDependencies": {
+    "babel-eslint": "^8.2.1",
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-flowtype": "^2.42.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
@@ -28,7 +30,8 @@
     "react": "16.2.0",
     "react-native": "0.52.0",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6"
   },
   "description": "This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).",
   "bin": {
