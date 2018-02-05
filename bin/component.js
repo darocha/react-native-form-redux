@@ -34,6 +34,7 @@ export default class Form extends Component<FormPropsType> {
     };
 
     if (!name) return new Error('Debe indicarse el nombre el Form');
+    if (!inputs) return new Error('Debe indicarse por lo menos un input');
     if (!inputs.length) return new Error('Debe indicarse por lo menos un input');
     inputs.forEach((input: InputType, index: number) => {
       if (!input.name) return new Error('Alguno de los inputs no tiene el atributo "name"');
@@ -50,7 +51,7 @@ export default class Form extends Component<FormPropsType> {
 
       this.setState({
         [input.name]: {
-          bottom: 18,
+          bottom: 22,
           color: '#bbb',
           fontSize: 14,
           left: 15,
@@ -77,7 +78,7 @@ export default class Form extends Component<FormPropsType> {
     this.setState({
       [inputName]: {
         ...this.state[inputName],
-        bottom: 50,
+        bottom: 56,
         color: '#000',
         fontSize: 10,
         left: 4,
@@ -101,7 +102,7 @@ export default class Form extends Component<FormPropsType> {
         this.setState({
           [inputName]: {
             ...this.state[inputName],
-            bottom: 50,
+            bottom: 56,
             color: '#000',
             fontSize: 10,
             left: 4,
@@ -126,7 +127,7 @@ export default class Form extends Component<FormPropsType> {
         this.setState({
           [inputName]: {
             ...this.state[inputName],
-            bottom: 18,
+            bottom: 22,
             color: '#bbb',
             fontSize: 14,
             left: 15,
@@ -261,7 +262,6 @@ export default class Form extends Component<FormPropsType> {
                         {
                           bottom: this.state[input.name].bottom,
                           color: this.state[input.name].color,
-                          fontFamily: 'Open Sans',
                           fontSize: this.state[input.name].fontSize,
                           left: this.state[input.name].left,
                           position: 'absolute',
