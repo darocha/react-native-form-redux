@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, Alert } from 'react-native';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
@@ -36,6 +36,13 @@ const App = () => (
         <Text style={{ fontWeight: 'bold', fontSize: 22 }}>react-native-form-redux</Text>
         <Text style={{ color: '#bbb', marginBottom: 32 }}>Eduardo Grajales @edgravill</Text>
         <Form
+          action={(validForm: boolean, messages: Array<string>) => {
+            if (!validForm) {
+              Alert.alert('Please fix the following', messages.join(', '));
+            } else {
+              Alert.alert('Logged');
+            }
+          }}
           name="example"
           inputs={[
             {
@@ -50,17 +57,17 @@ const App = () => (
                 if (!val.length) {
                   return {
                     valid: false,
-                    message: 'El Nombre de Usuario no puede estar vacío',
+                    message: 'Username cannot be empty',
                   };
                 } else if (val.length < 6) {
                   return {
                     valid: false,
-                    message: 'El Nombre de Usuario debe tener por lo menos 6 caracteres',
+                    message: 'Username must have 6 characters at least',
                   };
                 } else if (val.length > 18) {
                   return {
                     valid: false,
-                    message: 'El Nombre de Usuario no puede tener más de 18 caracteres',
+                    message: 'Username cannot have more than 18 characters',
                   };
                 }
 
@@ -77,17 +84,17 @@ const App = () => (
                 if (!val.length) {
                   return {
                     valid: false,
-                    message: 'El Password no puede estar vacío',
+                    message: 'Password cannot be empty',
                   };
                 } else if (val.length < 6) {
                   return {
                     valid: false,
-                    message: 'El Password debe tener por lo menos 6 caracteres',
+                    message: 'Password must have 6 characters at least',
                   };
                 } else if (val.length > 18) {
                   return {
                     valid: false,
-                    message: 'El Password no puede tener más de 18 caracteres',
+                    message: 'Password cannot have more than 18 characters',
                   };
                 }
 

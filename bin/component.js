@@ -186,7 +186,7 @@ export default class Form extends Component<FormPropsType> {
 
   render(): Node {
     const {
-      action,
+      action = () => {},
       title,
       titleColor = '#000',
       presentationalText,
@@ -275,10 +275,9 @@ export default class Form extends Component<FormPropsType> {
                           { color: successColor } : {},
                       ]}
                     >
-                      {input.placeholder}
+                      {input.placeholder || input.name}
                     </Text>
                     <TextInput
-                      autoCorrect={input.autoCorrect === undefined}
                       keyboardType={keyboardType}
                       onBlur={() => {
                         blurFormInput(name, input.name);

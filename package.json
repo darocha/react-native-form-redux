@@ -1,6 +1,6 @@
 {
   "name": "react-native-form-redux",
-  "version": "0.4.2",
+  "version": "0.5.1",
   "private": true,
   "devDependencies": {
     "babel-eslint": "^8.2.1",
@@ -33,7 +33,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6"
   },
-  "description": "This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).",
+  "description": "React Native Form Component highly customizable with redux integration and validation engine",
   "bin": {
     "react-native-form-redux": "actions.js"
   },
