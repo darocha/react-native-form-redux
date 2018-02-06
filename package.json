@@ -1,7 +1,6 @@
 {
   "name": "react-native-form-redux",
-  "version": "0.5.2",
-  "private": true,
+  "version": "0.5.3",
   "devDependencies": {
     "babel-eslint": "^8.2.1",
     "eslint": "^4.16.0",
