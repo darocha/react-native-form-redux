@@ -34,6 +34,7 @@ export default class Form extends Component<FormPropsType> {
     };
 
     if (!name) return new Error('Debe indicarse el nombre el Form');
+    if (!inputs) return new Error('Debe indicarse por lo menos un input');
     if (!inputs.length) return new Error('Debe indicarse por lo menos un input');
     inputs.forEach((input: InputType, index: number) => {
       if (!input.name) return new Error('Alguno de los inputs no tiene el atributo "name"');
@@ -50,7 +51,7 @@ export default class Form extends Component<FormPropsType> {
 
       this.setState({
         [input.name]: {
-          bottom: 18,
+          bottom: 22,
           color: '#bbb',
           fontSize: 14,
           left: 15,
@@ -77,7 +78,7 @@ export default class Form extends Component<FormPropsType> {
     this.setState({
       [inputName]: {
         ...this.state[inputName],
-        bottom: 50,
+        bottom: 56,
         color: '#000',
         fontSize: 10,
         left: 4,
@@ -101,7 +102,7 @@ export default class Form extends Component<FormPropsType> {
         this.setState({
           [inputName]: {
             ...this.state[inputName],
-            bottom: 50,
+            bottom: 56,
             color: '#000',
             fontSize: 10,
             left: 4,
@@ -126,7 +127,7 @@ export default class Form extends Component<FormPropsType> {
         this.setState({
           [inputName]: {
             ...this.state[inputName],
-            bottom: 18,
+            bottom: 22,
             color: '#bbb',
             fontSize: 14,
             left: 15,
@@ -185,7 +186,7 @@ export default class Form extends Component<FormPropsType> {
 
   render(): Node {
     const {
-      action,
+      action = () => {},
       title,
       titleColor = '#000',
       presentationalText,
@@ -196,6 +197,12 @@ export default class Form extends Component<FormPropsType> {
       activeColor = '#000',
       successColor = '#00CC6A',
       errorColor = '#E74856',
+      formStyle,
+      inputsContainerStyle,
+      inputContainerStyle,
+      placeholderStyle,
+      inputStyle,
+      messageStyle,
       value,
       form,
       focusFormInput,
@@ -212,7 +219,7 @@ export default class Form extends Component<FormPropsType> {
     };
 
     return (
-      <View style={styles.formView}>
+      <View style={[styles.formView, formStyle]}>
         {(title || presentationalText) && (
           <View style={styles.headerView}>
             {title && <Text style={[styles.title, { color: titleColor }]}>{title}</Text>}
@@ -223,10 +230,21 @@ export default class Form extends Component<FormPropsType> {
             )}
           </View>
         )}
-        <View style={styles.inputsView}>
-          {inputs.map((input: InputType) => {
+        <View style={[styles.inputsView, inputsContainerStyle]}>
+          {inputs.map((input: InputType, index: number) => {
             const inputObject = form[name] &&
               form[name].inputs.find((i: {}) => i.name === input.name);
+
+            let keyboardType = 'default';
+            let returnKeyType = 'done';
+
+            if (input.type === 'number' || input.type === 'numeric') keyboardType = 'numeric';
+            if (input.type === 'email' || input.type === 'email-address') keyboardType = 'email-address';
+            if (input.type === 'phone' || input.type === 'phone-pad') keyboardType = 'phone-pad';
+            if (input.type === 'search') returnKeyType = 'search';
+            if (input.type === 'message') returnKeyType = 'send';
+            if (inputs.length > 1) returnKeyType = 'next';
+            if (inputs.length === index + 1) returnKeyType = 'go';
 
             return (
               <TouchableWithoutFeedback
@@ -238,26 +256,29 @@ export default class Form extends Component<FormPropsType> {
                 key={input.name}
               >
                 <View>
-                  <View style={styles.inputView}>
+                  <View style={[styles.inputView, inputContainerStyle]}>
                     <Text
-                      style={[{
-                        bottom: this.state[input.name].bottom,
-                        color: this.state[input.name].color,
-                        fontFamily: 'Open Sans',
-                        fontSize: this.state[input.name].fontSize,
-                        left: this.state[input.name].left,
-                        position: 'absolute',
-                      }, this.state[input.name].validation.message &&
-                        !this.state[input.name].validation.valid ?
-                        { color: errorColor } : {},
-                      this.state[input.name].validation.message &&
-                        this.state[input.name].validation.valid ?
-                        { color: successColor } : {}]}
+                      style={[
+                        {
+                          bottom: this.state[input.name].bottom,
+                          color: this.state[input.name].color,
+                          fontSize: this.state[input.name].fontSize,
+                          left: this.state[input.name].left,
+                          position: 'absolute',
+                        },
+                        placeholderStyle,
+                        this.state[input.name].validation.message &&
+                          !this.state[input.name].validation.valid ?
+                          { color: errorColor } : {},
+                        this.state[input.name].validation.message &&
+                          this.state[input.name].validation.valid ?
+                          { color: successColor } : {},
+                      ]}
                     >
-                      {input.placeholder}
+                      {input.placeholder || input.name}
                     </Text>
                     <TextInput
-                      autoCorrect={input.autoCorrect === undefined}
+                      keyboardType={keyboardType}
                       onBlur={() => {
                         blurFormInput(name, input.name);
                         this.blurFormInput(input.name, !!getValue(input.name), {
@@ -277,9 +298,12 @@ export default class Form extends Component<FormPropsType> {
                         }).then(() => this.handleSubmit(input.name, action));
                       }}
                       ref={(ref: Node) => { this.ref[input.name] = ref; }}
+                      returnKeyType={returnKeyType}
                       secureTextEntry={input.type === 'password'}
+                      selectionColor={inactiveColor}
                       style={[
                         styles.textInput,
+                        inputStyle,
                         inputObject && inputObject.focus ?
                           { borderColor: activeColor } : { borderColor: inactiveColor },
                         getValue(input.name) ? { borderColor: activeColor } : {},
@@ -301,6 +325,7 @@ export default class Form extends Component<FormPropsType> {
                     <Text
                       style={[
                         styles.validationText,
+                        messageStyle,
                         {
                           color: this.state[input.name].validation.valid ?
                             successColor : errorColor,

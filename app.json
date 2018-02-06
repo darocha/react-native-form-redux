@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "react-native-form-redux",
+    "description": "React Native Form Component highly customizable with redux integration and validation engine",
+    "slug": "react-native-form-redux",
+    "privacy": "public",
+    "sdkVersion": "25.0.0",
+    "version": "0.5.1",
+    "githubUrl": "https://github.com/EdGraVill/react-native-form-redux",
+  }
+}
